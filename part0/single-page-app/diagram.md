@@ -1,18 +1,9 @@
 ```mermaid
 sequenceDiagram
-    actor user
     participant browser
     participant server
     
-    user->>browser: Write something in text field
-    user->>browser: Click save button
-    
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server
-    server-->>browser: 302 Redirect with Response header Location of /exampleapp/notes
-    deactivate server
-    
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
     activate server
     server-->>browser: HTML document
     deactivate server
@@ -22,7 +13,7 @@ sequenceDiagram
     server-->>browser: the css file
     deactivate server
     
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
     activate server
     server-->>browser: the JavaScript file
     deactivate server
@@ -35,6 +26,5 @@ sequenceDiagram
     deactivate server
 
     Note right of browser: The browser executes the callback function that renders the notes
-    browser->>user: Updated list now includes user new item
     
 ```
