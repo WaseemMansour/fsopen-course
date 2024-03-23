@@ -3,6 +3,6 @@ type Props = {
 }
 export const Header = ({ courseTitle }: Props) => {
   return (
-    <h1>{courseTitle}</h1>
+    <h3>{courseTitle}</h3>
   )
 }
