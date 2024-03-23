@@ -1,5 +1,5 @@
-import {CoursePart} from "../../types";
-import {Part} from "../Part";
+import {CoursePart} from "../../../types";
+import {Part} from "./Part";
 
 type Props = {
   courseParts: CoursePart[];

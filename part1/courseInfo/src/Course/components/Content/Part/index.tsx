@@ -1,4 +1,4 @@
-import {CoursePart} from "../../types";
+import {CoursePart} from "../../../../types";
 
 export const Part = ({ name, numOfExercises }: CoursePart) => {
   return (
