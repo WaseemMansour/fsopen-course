@@ -1,0 +1,8 @@
+.feedback-option {
+    margin: 0 5px;
+}
+
+.statistics-table td:first-child {
+    padding-right: 20px;
+    font-weight: bold;
+}
