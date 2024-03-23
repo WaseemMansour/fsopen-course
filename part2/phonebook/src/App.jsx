@@ -11,8 +11,18 @@ const App = () => {
     setNewName(event.target.value);
   }
 
+  const checkNameAlreadyAdded = (input) => {
+    return persons.some(person => person.name === input);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if(checkNameAlreadyAdded(newName)) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
+
     const newPerson = {
       name: newName
     }
