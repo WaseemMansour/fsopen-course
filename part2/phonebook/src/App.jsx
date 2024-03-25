@@ -9,7 +9,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newPhoneNum, setNewPhoneNum] = useState('')
   const [filter, setFilter] = useState('');
-  const [notificationMessage, setNotificationMessage] = useState();
+  const [notificationMessage, setNotificationMessage] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
 
   const [persons, setPersons] = useState([])
