@@ -39,22 +39,37 @@ const App = () => {
     event.preventDefault();
 
     if(checkNameAlreadyAdded(newName)) {
-      alert(`${newName} is already added to phonebook`);
-      return;
+      const isConfirmed = confirm(`${newName} is already added to phonebook, replace the old number with a new one?`);
+      
+      if (!isConfirmed) return;
+
+      const personToUpdate = [...persons].find(person => person.name === newName);
+      personToUpdate.number = newPhoneNum
+      
+      
+      phonebookServie
+        .update(personToUpdate.id, personToUpdate)
+        .then(updatedPerson => {
+          setPersons(persons.map(person => person.id !== updatedPerson.id ? person : updatedPerson));
+          setNewName('');
+          setNewPhoneNum('');
+        })
+    } else {
+      const newPerson = {
+        name: newName,
+        number: newPhoneNum
+      }
+  
+      phonebookServie
+        .create(newPerson)
+        .then(createdPerson => {
+          setPersons(persons.concat(createdPerson));
+          setNewName('');
+          setNewPhoneNum('');
+        })
+      
     }
 
-    const newPerson = {
-      name: newName,
-      number: newPhoneNum
-    }
-
-    phonebookServie
-      .create(newPerson)
-      .then(createdPerson => {
-        setPersons(persons.concat(createdPerson));
-        setNewName('');
-        setNewPhoneNum('');
-      })
     
   }
 
