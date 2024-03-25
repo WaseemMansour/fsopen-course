@@ -66,6 +66,21 @@ const App = () => {
             setNotificationMessage(null)
           }, 5000)
         })
+        .catch((error) => {
+          const status = error.response.status;
+          if(status === 404) {
+            setNotificationType('error');
+            setNotificationMessage(
+              `Information of '${personToUpdate.name}' has already been removed from the server`
+            )
+            setPersons(persons.filter(person => person.id !== personToUpdate.id))
+            
+            setTimeout(() => {
+              setNotificationMessage(null)
+            }, 5000)
+          }
+          console.log({ error })
+        })
     } else {
       const newPerson = {
         name: newName,
