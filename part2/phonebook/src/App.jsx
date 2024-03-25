@@ -58,6 +58,15 @@ const App = () => {
     
   }
 
+  const handleDeletePerson = ({name, id}) => {
+    window.confirm(`Are you sure you want to delete ${name}?`);
+
+    const updatedPersons = persons.filter(person => person.id !== id);
+    phonebookServie
+      .remove(id)
+      .then(() => setPersons(updatedPersons))
+  }
+
   const personsToShow = persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
 
   return (
@@ -70,7 +79,10 @@ const App = () => {
         handlers={{ handleInputChange, handlePhoneNumChange, handleSubmit }}
       />
       <h2>Numbers</h2>
-      <Persons list={personsToShow} />
+      <Persons 
+        list={personsToShow} 
+        onDeletePerson={handleDeletePerson}
+      />
     </div>
   )
 }
